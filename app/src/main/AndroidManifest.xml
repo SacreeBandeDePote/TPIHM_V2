@@ -16,11 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentBeforeActivity" />
-        <activity android:name=".TeacherActivity" />
-        <activity android:name=".StudentAfterActivity" />
-        <activity android:name=".SlotStudentActivity" />
-        <activity android:name=".SlotTeacherActivity"></activity>
+        <activity android:name=".StudentBeforeActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".LoginActivity" /></activity>
+        <activity android:name=".TeacherActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" /></activity>
+        <activity android:name=".StudentAfterActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" /></activity>
+        <activity android:name=".SlotTeacherActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TeacherActivity" /></activity>
     </application>
 
 </manifest>

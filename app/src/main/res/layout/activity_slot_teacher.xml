@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context="ihm.lsbdp.insa.eps_insa.SlotTeacherActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Slot for teacher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
