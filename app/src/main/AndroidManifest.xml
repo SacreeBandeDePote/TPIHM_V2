@@ -17,21 +17,25 @@
             </intent-filter>
         </activity>
         <activity android:name=".StudentBeforeActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".LoginActivity" /></activity>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".LoginActivity" />
+        </activity>
         <activity android:name=".TeacherActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" /></activity>
+                android:value=".LoginActivity" />
+        </activity>
         <activity android:name=".StudentAfterActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" /></activity>
+                android:value=".LoginActivity" />
+        </activity>
         <activity android:name=".SlotTeacherActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TeacherActivity" /></activity>
+                android:value=".TeacherActivity" />
+        </activity>
     </application>
 
 </manifest>
