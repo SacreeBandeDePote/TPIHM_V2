@@ -1,4 +1,4 @@
-package ihm.lsbdp.insa.eps_insa;
+package ihm.lsbdp.insa.eps_insa.student.before;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+
+import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeActivity extends AppCompatActivity {
 

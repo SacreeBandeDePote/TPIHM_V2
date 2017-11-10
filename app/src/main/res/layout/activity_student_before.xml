@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ihm.lsbdp.insa.eps_insa.StudentBeforeActivity">
+    tools:context="ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout"
