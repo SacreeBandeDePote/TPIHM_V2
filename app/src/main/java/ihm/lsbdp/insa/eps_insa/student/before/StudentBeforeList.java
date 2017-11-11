@@ -44,7 +44,6 @@ public class StudentBeforeList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //  expandableListView = (ExpandableListView) getView().findViewById(R.id.expandible_listview);
 
         // TO DO: check adapter notion on android
 
