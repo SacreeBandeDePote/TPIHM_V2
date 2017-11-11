@@ -19,17 +19,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void connectStudentBefore(View view) {
-        Intent intent = new Intent(this, StudentBeforeActivity.class);
+        Intent intent = new Intent(this,StudentBeforeActivity.class);
         startActivity(intent);
     }
 
     public void connectStudentAfter(View view) {
-        Intent intent = new Intent(this, StudentAfterActivity.class);
+        Intent intent = new Intent(this,StudentAfterActivity.class);
         startActivity(intent);
     }
 
     public void connectTeacher(View view) {
-        Intent intent = new Intent(this, TeacherActivity.class);
+        Intent intent = new Intent(this,TeacherActivity.class);
         startActivity(intent);
     }
 }
