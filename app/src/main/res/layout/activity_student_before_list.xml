@@ -5,8 +5,9 @@
     tools:context="ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeList">
 
     <ExpandableListView
-        android:id="@+id/expandible_listview"
+        android:id="@+id/expend_list_sport"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ExpandableListView>
+        android:layout_height="match_parent">
+    </ExpandableListView>
 
 </RelativeLayout>

@@ -25,16 +25,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeList extends Fragment {
 
-    ExpandableListView expandableListView;
+    //https://www.survivingwithandroid.com/2013/01/android-expandablelistview-baseexpandablelistadapter.html
+    ExpandableListView expendSportList;
 
     // Sport list
-    String[] sportList = new String[]{"Tennis", "Football", "Basketball"};
+    String[] sportList = {"Tennis", "Football", "Basketball"};
 
     public static StudentBeforeList newInstance() {
         StudentBeforeList fragment = new StudentBeforeList();
@@ -45,13 +48,15 @@ public class StudentBeforeList extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TO DO: check adapter notion on android
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // TO DO: check adapter notion on android
+        expendSportList = (ExpandableListView) container.findViewById(R.id.expend_list_sport);
+        
+
         return inflater.inflate(R.layout.activity_student_before_list, container, false);
     }
 }
