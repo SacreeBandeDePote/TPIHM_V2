@@ -9,29 +9,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentBeforeActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".LoginActivity" /></activity>
-        <activity android:name=".TeacherActivity">
+        <activity android:name=".student.before.StudentBeforeActivity" android:label="StudentBeforeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" /></activity>
-        <activity android:name=".StudentAfterActivity">
+                android:value=".login.LoginActivity" />
+        </activity>
+        <activity android:name=".teacher.TeacherActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".LoginActivity" /></activity>
-        <activity android:name=".SlotTeacherActivity">
+                android:value=".login.LoginActivity" />
+        </activity>
+        <activity android:name=".student.after.StudentAfterActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".TeacherActivity" /></activity>
+                android:value=".login.LoginActivity" />
+        </activity>
+        <activity android:name=".teacher.SlotTeacherActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".teacher.TeacherActivity" />
+        </activity>
     </application>
 
 </manifest>
