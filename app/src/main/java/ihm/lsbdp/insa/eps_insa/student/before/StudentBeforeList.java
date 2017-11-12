@@ -28,16 +28,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeList extends Fragment {
 
-    //https://www.survivingwithandroid.com/2013/01/android-expandablelistview-baseexpandablelistadapter.html
-    ExpandableListView expendSportList;
+    private LinkedHashMap<String, Sport> team = new LinkedHashMap<String, Sport>();
+    private List<Sport> sportList = new ArrayList<Sport>();
 
-    // Sport list
-    String[] sportList = {"Tennis", "Football", "Basketball"};
+    private SportExpandAdapter listAdapter;
+    //https://www.survivingwithandroid.com/2013/01/android-expandablelistview-baseexpandablelistadapter.html
+    private ExpandableListView expendSportList;
 
     public static StudentBeforeList newInstance() {
         StudentBeforeList fragment = new StudentBeforeList();
@@ -47,16 +53,42 @@ public class StudentBeforeList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // TO DO: check adapter notion on android
+
+        loadData();
+
         expendSportList = (ExpandableListView) container.findViewById(R.id.expend_list_sport);
+        listAdapter = new SportExpandAdapter(getContext(), sportList);
+        if(listAdapter != null)
+            expendSportList.setAdapter(listAdapter);
+        else
+            System.err.println("Error : liste Adapter !!!!");
+
+        expendSportList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                //get the group header
+                Sport headerInfo = sportList.get(groupPosition);
+                //display it or do something with it
+                Toast.makeText(getContext(), headerInfo.getName(),
+                        Toast.LENGTH_LONG).show();
+
+                return false;
+            }
+        });
         
 
         return inflater.inflate(R.layout.activity_student_before_list, container, false);
+    }
+
+    private void loadData() {
+        SportDetail sd = new SportDetail("blablahlkqsjdflkqjsdhflkqhjsdflkjqhsdflkjhqsldkfhqlksdfqjsdhflkqsdhfl\nsdhfq", "nulpart");
+        Sport s = new Sport("Danse", "bla", sd);
+        sportList.add(s);
     }
 }

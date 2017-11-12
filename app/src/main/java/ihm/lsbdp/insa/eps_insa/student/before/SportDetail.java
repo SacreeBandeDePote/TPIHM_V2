@@ -7,4 +7,18 @@ package ihm.lsbdp.insa.eps_insa.student.before;
 public class SportDetail {
     private String description;
     private String location;
+
+    public SportDetail(String description, String location) {
+        this.description = description;
+        this.location = location;
+    }
+
+    public String getDescription() {
+
+        return description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 }
