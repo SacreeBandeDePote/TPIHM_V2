@@ -26,15 +26,15 @@ public class StudentBeforeActivity extends AppCompatActivity {
                         Fragment selectedFragment = null;
                         switch (item.getItemId()) {
                             case R.id.action_item1:
-                                selectedFragment = StudentBeforeList.newInstance();
+                                //selectedFragment = StudentBeforeList.newInstance();
                                 break;
                             case R.id.action_item2:
-                                selectedFragment = StudentBeforeWish.newInstance();
+                                //selectedFragment = StudentBeforeWish.newInstance();
                                 break;
                         }
-                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_layout, selectedFragment);
-                        transaction.commit();
+                        //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        //transaction.replace(R.id.frame_layout, selectedFragment);
+                        //transaction.commit();
                         return true;
                     }
                 });

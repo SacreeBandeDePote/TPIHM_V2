@@ -14,6 +14,12 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
         android:animateLayoutChanges="true">
+
+        <fragment
+            android:id="@+id/fragment_list"
+            android:name="ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView

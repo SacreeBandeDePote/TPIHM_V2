@@ -22,6 +22,7 @@ package ihm.lsbdp.insa.eps_insa.student.before;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeList extends Fragment {
 
-    private LinkedHashMap<String, Sport> team = new LinkedHashMap<String, Sport>();
     private List<Sport> sportList = new ArrayList<Sport>();
 
     private SportExpandAdapter listAdapter;
@@ -53,6 +53,7 @@ public class StudentBeforeList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -60,9 +61,12 @@ public class StudentBeforeList extends Fragment {
                              Bundle savedInstanceState) {
         // TO DO: check adapter notion on android
 
+        View rootView = inflater.inflate(R.layout.activity_student_before_list, container, false);
+
+
         loadData();
 
-        expendSportList = (ExpandableListView) container.findViewById(R.id.expend_list_sport);
+        expendSportList = (ExpandableListView) rootView.findViewById(R.id.expend_list_sport);
         listAdapter = new SportExpandAdapter(getContext(), sportList);
         if(listAdapter != null)
             expendSportList.setAdapter(listAdapter);
@@ -83,7 +87,7 @@ public class StudentBeforeList extends Fragment {
         });
         
 
-        return inflater.inflate(R.layout.activity_student_before_list, container, false);
+        return rootView;
     }
 
     private void loadData() {
