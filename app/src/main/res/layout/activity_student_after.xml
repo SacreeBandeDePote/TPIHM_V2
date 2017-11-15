@@ -8,11 +8,32 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="360dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="436dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:background="@android:color/darker_gray"
+        android:backgroundTint="@color/white_trans"
         android:gravity="center"
-        android:text="Student after wish"
+        android:text="Lundi 07/11 de 8h - 10h"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/uptext" />
+
+    <TextView
+        android:id="@+id/uptext"
+        android:layout_width="360dp"
+        android:layout_height="56dp"
+        android:background="@android:color/darker_gray"
+        android:backgroundTint="@android:color/darker_gray"
+        android:gravity="center"
+        android:text="Créneau"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:translationX="@android:dimen/dialog_min_width_major"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
