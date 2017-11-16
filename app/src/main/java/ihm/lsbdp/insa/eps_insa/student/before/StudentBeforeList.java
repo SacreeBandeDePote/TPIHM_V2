@@ -62,7 +62,8 @@ public class StudentBeforeList extends Fragment{
     }
 
     private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> {
-        private String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
+        private static String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
+        private static String[] detailList = {"Tennis", "Rugby", "Danse", "Escalade"};
         private static final int UNSELECTED = -1;
 
         private RecyclerView recyclerView;
@@ -91,7 +92,8 @@ public class StudentBeforeList extends Fragment{
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
             private ExpandableLayout expandableLayout;
-            private TextView expandButton;
+            private TextView sport;
+            private TextView detail;
             private int position;
 
             public ViewHolder(View itemView) {
@@ -100,17 +102,21 @@ public class StudentBeforeList extends Fragment{
                 expandableLayout = (ExpandableLayout) itemView.findViewById(R.id.expandable_layout);
                 expandableLayout.setInterpolator(new OvershootInterpolator());
                 expandableLayout.setOnExpansionUpdateListener(this);
-                expandButton = (TextView) itemView.findViewById(R.id.sport_header);
+                sport = (TextView) itemView.findViewById(R.id.sport_header);
 
-                expandButton.setOnClickListener(this);
+                sport.setOnClickListener(this);
+
+                detail = (TextView) itemView.findViewById(R.id.detail);
             }
 
             public void bind(int position) {
                 this.position = position;
 
-                expandButton.setText(sport[position]);
+                sport.setText(SportAdapter.this.sport[position]);
 
-                expandButton.setSelected(false);
+                sport.setSelected(false);
+
+                detail.setText(SportAdapter.this.detailList[position]);
                 expandableLayout.collapse(false);
             }
 
@@ -118,14 +124,14 @@ public class StudentBeforeList extends Fragment{
             public void onClick(View view) {
                 ViewHolder holder = (ViewHolder) recyclerView.findViewHolderForAdapterPosition(selectedItem);
                 if (holder != null) {
-                    holder.expandButton.setSelected(false);
+                    holder.sport.setSelected(false);
                     holder.expandableLayout.collapse();
                 }
 
                 if (position == selectedItem) {
                     selectedItem = UNSELECTED;
                 } else {
-                    expandButton.setSelected(true);
+                    sport.setSelected(true);
                     expandableLayout.expand();
                     selectedItem = position;
                 }
