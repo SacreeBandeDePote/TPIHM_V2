@@ -3,14 +3,18 @@ package ihm.lsbdp.insa.eps_insa.student.before;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeActivity extends AppCompatActivity {
+
+    Fragment frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,25 +27,32 @@ public class StudentBeforeActivity extends AppCompatActivity {
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Fragment selectedFragment = null;
+                        frag = null;
                         switch (item.getItemId()) {
                             case R.id.action_item1:
-                                //selectedFragment = StudentBeforeList.newInstance();
+                                System.out.println("Switching to List");
+                                frag = StudentBeforeList.newInstance();
                                 break;
                             case R.id.action_item2:
-                                //selectedFragment = StudentBeforeWish.newInstance();
+                                System.out.println("Switching to Wish");
+                                frag = StudentBeforeWish.newInstance();
                                 break;
                         }
-                        //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                        //transaction.replace(R.id.frame_layout, selectedFragment);
-                        //transaction.commit();
+                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, frag);
+                        transaction.commit();
                         return true;
                     }
                 });
 
         //Manually displaying the first fragment - one time only
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, StudentBeforeList.newInstance());
-        transaction.commit();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        frag = StudentBeforeList.newInstance();
+
+        fragmentTransaction.add(R.id.frame_layout, frag);
+        fragmentTransaction.commit();
     }
 }

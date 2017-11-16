@@ -22,28 +22,20 @@ package ihm.lsbdp.insa.eps_insa.student.before;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
-import android.widget.Toast;
+import android.view.animation.OvershootInterpolator;
+import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+import net.cachapa.expandablelayout.ExpandableLayout;
 
 import ihm.lsbdp.insa.eps_insa.R;
 
-public class StudentBeforeList extends Fragment {
-
-    private List<Sport> sportList = new ArrayList<Sport>();
-
-    private SportExpandAdapter listAdapter;
-    //https://www.survivingwithandroid.com/2013/01/android-expandablelistview-baseexpandablelistadapter.html
-    private ExpandableListView expendSportList;
+public class StudentBeforeList extends Fragment{
 
     public static StudentBeforeList newInstance() {
         StudentBeforeList fragment = new StudentBeforeList();
@@ -59,40 +51,94 @@ public class StudentBeforeList extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // TO DO: check adapter notion on android
 
         View rootView = inflater.inflate(R.layout.activity_student_before_list, container, false);
 
-
-        loadData();
-
-        expendSportList = (ExpandableListView) rootView.findViewById(R.id.expend_list_sport);
-        listAdapter = new SportExpandAdapter(getContext(), sportList);
-        if(listAdapter != null)
-            expendSportList.setAdapter(listAdapter);
-        else
-            System.err.println("Error : liste Adapter !!!!");
-
-        expendSportList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                //get the group header
-                Sport headerInfo = sportList.get(groupPosition);
-                //display it or do something with it
-                Toast.makeText(getContext(), headerInfo.getName(),
-                        Toast.LENGTH_LONG).show();
-
-                return false;
-            }
-        });
-        
+        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.list_sport);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(new SportAdapter(recyclerView));
 
         return rootView;
     }
 
+    private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> {
+        private String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
+        private static final int UNSELECTED = -1;
+
+        private RecyclerView recyclerView;
+        private int selectedItem = UNSELECTED;
+
+        public SportAdapter(RecyclerView recyclerView) {
+            this.recyclerView = recyclerView;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.sport, parent, false);
+            return new ViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            holder.bind(position);
+        }
+
+        @Override
+        public int getItemCount() {
+            return sport.length;
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
+            private ExpandableLayout expandableLayout;
+            private TextView expandButton;
+            private int position;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+
+                expandableLayout = (ExpandableLayout) itemView.findViewById(R.id.expandable_layout);
+                expandableLayout.setInterpolator(new OvershootInterpolator());
+                expandableLayout.setOnExpansionUpdateListener(this);
+                expandButton = (TextView) itemView.findViewById(R.id.sport_header);
+
+                expandButton.setOnClickListener(this);
+            }
+
+            public void bind(int position) {
+                this.position = position;
+
+                expandButton.setText(sport[position]);
+
+                expandButton.setSelected(false);
+                expandableLayout.collapse(false);
+            }
+
+            @Override
+            public void onClick(View view) {
+                ViewHolder holder = (ViewHolder) recyclerView.findViewHolderForAdapterPosition(selectedItem);
+                if (holder != null) {
+                    holder.expandButton.setSelected(false);
+                    holder.expandableLayout.collapse();
+                }
+
+                if (position == selectedItem) {
+                    selectedItem = UNSELECTED;
+                } else {
+                    expandButton.setSelected(true);
+                    expandableLayout.expand();
+                    selectedItem = position;
+                }
+            }
+
+            @Override
+            public void onExpansionUpdate(float expansionFraction, int state) {
+                Log.d("ExpandableLayout", "State: " + state);
+                recyclerView.smoothScrollToPosition(getAdapterPosition());
+            }
+        }
+    }
+
     private void loadData() {
-        SportDetail sd = new SportDetail("blablahlkqsjdflkqjsdhflkqhjsdflkjqhsdflkjhqsldkfhqlksdfqjsdhflkqsdhfl\nsdhfq", "nulpart");
-        Sport s = new Sport("Danse", "bla", sd);
-        sportList.add(s);
     }
 }
