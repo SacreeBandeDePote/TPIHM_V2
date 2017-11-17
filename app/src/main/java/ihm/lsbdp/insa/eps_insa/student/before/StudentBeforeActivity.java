@@ -15,6 +15,8 @@ import ihm.lsbdp.insa.eps_insa.R;
 public class StudentBeforeActivity extends AppCompatActivity {
 
     Fragment frag;
+    StudentBeforeList listFragment;
+    StudentBeforeWish wishFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,9 @@ public class StudentBeforeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_before);
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
+
+        listFragment = StudentBeforeList.newInstance();
+        wishFragment = StudentBeforeWish.newInstance();
 
         bottomNavigationView.setOnNavigationItemSelectedListener
                 (new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,11 +36,11 @@ public class StudentBeforeActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.action_item1:
                                 System.out.println("Switching to List");
-                                frag = StudentBeforeList.newInstance();
+                                frag = listFragment;
                                 break;
                             case R.id.action_item2:
                                 System.out.println("Switching to Wish");
-                                frag = StudentBeforeWish.newInstance();
+                                frag = wishFragment;
                                 break;
                         }
                         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -50,7 +55,7 @@ public class StudentBeforeActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        frag = StudentBeforeList.newInstance();
+        frag = listFragment;
 
         fragmentTransaction.add(R.id.frame_layout, frag);
         fragmentTransaction.commit();

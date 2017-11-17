@@ -29,7 +29,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -61,9 +65,10 @@ public class StudentBeforeList extends Fragment{
         return rootView;
     }
 
-    private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.ViewHolder> {
-        private static String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
-        private static String[] detailList = {"Tennis", "Rugby", "Danse", "Escalade"};
+    private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.SportViewHolder> {
+        //private static String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
+        //private static String[] detailList = {"Tennis", "Rugby", "Danse", "Escalade"};
+        private static Sport[] sports = new Sport[1];
         private static final int UNSELECTED = -1;
 
         private RecyclerView recyclerView;
@@ -74,64 +79,94 @@ public class StudentBeforeList extends Fragment{
         }
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public SportViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View itemView = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.sport, parent, false);
-            return new ViewHolder(itemView);
+            return new SportViewHolder(itemView);
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
+        public void onBindViewHolder(SportViewHolder holder, int position) {
             holder.bind(position);
         }
 
         @Override
         public int getItemCount() {
-            return sport.length;
+            return sports.length;
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
+        public class SportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
             private ExpandableLayout expandableLayout;
-            private TextView sport;
-            private TextView detail;
+            private LinearLayout header;
+            private TextView headerName;
+            private TextView headerSlotTime;
+
+            private TextView description;
+            private TextView teacher;
+            private TextView studentSlot;
+            /*
+                Du coup à la place de faire une vraie Map, je met une image bien dégueue, mais
+                globalement ça fait l'affaire en vrai.
+             */
+            //private MapView sportMap;
+            //private GoogleMap gSportMap;
+            private Button addWish;
             private int position;
 
-            public ViewHolder(View itemView) {
+            public SportViewHolder(View itemView) {
                 super(itemView);
+
+                SportAdapter.this.loadData();
+
+                header = (LinearLayout) itemView.findViewById(R.id.sport_header);
+                header.setOnClickListener(this);
+
+                headerName = (TextView) itemView.findViewById(R.id.sport_header_title);
+                headerSlotTime = (TextView) itemView.findViewById(R.id.sport_header_slot);
 
                 expandableLayout = (ExpandableLayout) itemView.findViewById(R.id.expandable_layout);
                 expandableLayout.setInterpolator(new OvershootInterpolator());
                 expandableLayout.setOnExpansionUpdateListener(this);
-                sport = (TextView) itemView.findViewById(R.id.sport_header);
 
-                sport.setOnClickListener(this);
+                description = (TextView) itemView.findViewById(R.id.description);
+                teacher = (TextView) itemView.findViewById(R.id.teacher);
+                studentSlot = (TextView) itemView.findViewById(R.id.slot);
+                //sportMap = (MapView) itemView.findViewById(R.id.sportMap);
 
-                detail = (TextView) itemView.findViewById(R.id.detail);
+                addWish = (Button) itemView.findViewById(R.id.addWish);
+                addWish.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        onClickButton(v);
+                    }
+                });
             }
 
             public void bind(int position) {
                 this.position = position;
+                header.setSelected(false);
 
-                sport.setText(SportAdapter.this.sport[position]);
+                headerName.setText(SportAdapter.this.sports[position].getName());
+                headerSlotTime.setText(SportAdapter.this.sports[position].getTimeSlot());
 
-                sport.setSelected(false);
+                description.setText("Description : " + SportAdapter.this.sports[position].getShortDescription());
+                teacher.setText("Professeur : " + SportAdapter.this.sports[position].getTeacher());
+                studentSlot.setText(SportAdapter.this.sports[position].slotToString());
 
-                detail.setText(SportAdapter.this.detailList[position]);
                 expandableLayout.collapse(false);
             }
 
             @Override
             public void onClick(View view) {
-                ViewHolder holder = (ViewHolder) recyclerView.findViewHolderForAdapterPosition(selectedItem);
+                SportViewHolder holder = (SportViewHolder) recyclerView.findViewHolderForAdapterPosition(selectedItem);
                 if (holder != null) {
-                    holder.sport.setSelected(false);
+                    holder.header.setSelected(false);
                     holder.expandableLayout.collapse();
                 }
 
                 if (position == selectedItem) {
                     selectedItem = UNSELECTED;
                 } else {
-                    sport.setSelected(true);
+                    header.setSelected(true);
                     expandableLayout.expand();
                     selectedItem = position;
                 }
@@ -142,9 +177,23 @@ public class StudentBeforeList extends Fragment{
                 Log.d("ExpandableLayout", "State: " + state);
                 recyclerView.smoothScrollToPosition(getAdapterPosition());
             }
-        }
-    }
 
-    private void loadData() {
+            public void onClickButton(View v) {
+                Log.d("AddWish", "I have been clicked !!");
+                sports[position].subscribe();
+                studentSlot.setText(SportAdapter.this.sports[position].slotToString());
+                addWish.setClickable(false);
+            }
+        }
+
+        private static void loadData() {
+            sports[0] = new Sport("Basket",
+                    "Ven - 16h,18h",
+                    "Whesh courir, whesh tirer, wesh ganger",
+                    "Best Teacher ever",
+                    20,
+                    15,
+                    new LatLng(45.785503, 4.883437));
+        }
     }
 }
