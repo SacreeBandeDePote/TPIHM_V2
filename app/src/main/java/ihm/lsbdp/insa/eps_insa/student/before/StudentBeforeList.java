@@ -20,6 +20,7 @@
 
 package ihm.lsbdp.insa.eps_insa.student.before;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +33,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -66,9 +68,9 @@ public class StudentBeforeList extends Fragment{
     }
 
     private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.SportViewHolder> {
-        //private static String[] sport = {"Tennis", "Rugby", "Danse", "Escalade"};
-        //private static String[] detailList = {"Tennis", "Rugby", "Danse", "Escalade"};
-        private static Sport[] sports = new Sport[1];
+
+        private static Sport[] sports = new Sport[2];
+
         private static final int UNSELECTED = -1;
 
         private RecyclerView recyclerView;
@@ -104,12 +106,6 @@ public class StudentBeforeList extends Fragment{
             private TextView description;
             private TextView teacher;
             private TextView studentSlot;
-            /*
-                Du coup à la place de faire une vraie Map, je met une image bien dégueue, mais
-                globalement ça fait l'affaire en vrai.
-             */
-            //private MapView sportMap;
-            //private GoogleMap gSportMap;
             private Button addWish;
             private int position;
 
@@ -179,18 +175,31 @@ public class StudentBeforeList extends Fragment{
             }
 
             public void onClickButton(View v) {
-                Log.d("AddWish", "I have been clicked !!");
                 sports[position].subscribe();
                 studentSlot.setText(SportAdapter.this.sports[position].slotToString());
-                addWish.setClickable(false);
+                addWish.setEnabled(false);
+
+                Context context = v.getContext();
+                CharSequence text = "Le sport" + sports[position].getName()+" a été ajouté à vos voeux avec succès!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(v.getContext(), text, duration);
+                toast.show();
             }
         }
 
         private static void loadData() {
-            sports[0] = new Sport("Basket",
+            sports[0] = new Sport("Tennis",
                     "Ven - 16h,18h",
-                    "Whesh courir, whesh tirer, wesh ganger",
-                    "Best Teacher ever",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                    "Monsieur Bob Ho",
+                    20,
+                    15,
+                    new LatLng(45.785503, 4.883437));
+            sports[1] = new Sport("Basket",
+                    "Ven - 16h,18h",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                    "Monsieur Denis Chon",
                     20,
                     15,
                     new LatLng(45.785503, 4.883437));
