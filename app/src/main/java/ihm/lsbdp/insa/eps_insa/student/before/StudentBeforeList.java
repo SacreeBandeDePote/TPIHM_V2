@@ -39,9 +39,14 @@ import com.google.android.gms.maps.model.LatLng;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
+import java.util.List;
+
 import ihm.lsbdp.insa.eps_insa.R;
 
 public class StudentBeforeList extends Fragment{
+
+    RecyclerView view_listSport;
+    SportAdapter sportAdapter;
 
     public static StudentBeforeList newInstance() {
         StudentBeforeList fragment = new StudentBeforeList();
@@ -51,7 +56,6 @@ public class StudentBeforeList extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -60,16 +64,19 @@ public class StudentBeforeList extends Fragment{
 
         View rootView = inflater.inflate(R.layout.activity_student_before_list, container, false);
 
-        RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.list_sport);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new SportAdapter(recyclerView));
+        view_listSport = (RecyclerView) rootView.findViewById(R.id.list_sport);
+        view_listSport.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        sportAdapter = new SportAdapter(view_listSport);
+
+        view_listSport.setAdapter(sportAdapter);
 
         return rootView;
     }
 
     private static class SportAdapter extends RecyclerView.Adapter<SportAdapter.SportViewHolder> {
 
-        private static Sport[] sports = new Sport[2];
+        private static List<Sport> sports = Sport.sports;
 
         private static final int UNSELECTED = -1;
 
@@ -94,7 +101,7 @@ public class StudentBeforeList extends Fragment{
 
         @Override
         public int getItemCount() {
-            return sports.length;
+            return sports.size();
         }
 
         public class SportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, ExpandableLayout.OnExpansionUpdateListener {
@@ -111,8 +118,6 @@ public class StudentBeforeList extends Fragment{
 
             public SportViewHolder(View itemView) {
                 super(itemView);
-
-                SportAdapter.this.loadData();
 
                 header = (LinearLayout) itemView.findViewById(R.id.sport_header);
                 header.setOnClickListener(this);
@@ -141,12 +146,12 @@ public class StudentBeforeList extends Fragment{
                 this.position = position;
                 header.setSelected(false);
 
-                headerName.setText(SportAdapter.this.sports[position].getName());
-                headerSlotTime.setText(SportAdapter.this.sports[position].getTimeSlot());
+                headerName.setText(SportAdapter.this.sports.get(position).getName());
+                headerSlotTime.setText(SportAdapter.this.sports.get(position).getTimeSlot());
 
-                description.setText("Description : " + SportAdapter.this.sports[position].getShortDescription());
-                teacher.setText("Professeur : " + SportAdapter.this.sports[position].getTeacher());
-                studentSlot.setText(SportAdapter.this.sports[position].slotToString());
+                description.setText("Description : " + SportAdapter.this.sports.get(position).getShortDescription());
+                teacher.setText("Professeur : " + SportAdapter.this.sports.get(position).getTeacher());
+                studentSlot.setText(SportAdapter.this.sports.get(position).slotToString());
 
                 expandableLayout.collapse(false);
             }
@@ -175,34 +180,16 @@ public class StudentBeforeList extends Fragment{
             }
 
             public void onClickButton(View v) {
-                sports[position].subscribe();
-                studentSlot.setText(SportAdapter.this.sports[position].slotToString());
+                sports.get(position).subscribe(position);
+                studentSlot.setText(SportAdapter.this.sports.get(position).slotToString());
                 addWish.setEnabled(false);
 
-                Context context = v.getContext();
-                CharSequence text = "Le sport" + sports[position].getName()+" a été ajouté à vos voeux avec succès!";
+                CharSequence text = "Le sport" + sports.get(position).getName()+" a été ajouté à vos voeux avec succès!";
                 int duration = Toast.LENGTH_SHORT;
 
                 Toast toast = Toast.makeText(v.getContext(), text, duration);
                 toast.show();
             }
-        }
-
-        private static void loadData() {
-            sports[0] = new Sport("Tennis",
-                    "Ven - 16h,18h",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
-                    "Monsieur Bob Ho",
-                    20,
-                    15,
-                    new LatLng(45.785503, 4.883437));
-            sports[1] = new Sport("Basket",
-                    "Ven - 16h,18h",
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
-                    "Monsieur Denis Chon",
-                    20,
-                    15,
-                    new LatLng(45.785503, 4.883437));
         }
     }
 }

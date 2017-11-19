@@ -3,4 +3,5 @@
     <string name="student_before_item_1">Liste des sports</string>
     <string name="student_before_item_2">Voeux</string>
     <string name="ajouter_aux_voeux">Ajouter aux voeux</string>
+    <string name="del_wish">Retirer des voeux</string>
 </resources>

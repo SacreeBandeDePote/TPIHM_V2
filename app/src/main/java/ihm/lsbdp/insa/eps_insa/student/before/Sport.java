@@ -2,6 +2,9 @@ package ihm.lsbdp.insa.eps_insa.student.before;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by perewoulpy on 11/11/17.
  */
@@ -16,6 +19,28 @@ public class Sport {
     private int takenStudentSlot;
     private LatLng location;
 
+    public static List<Sport> sports = new ArrayList<>();
+
+    public static List<Sport> wishes = new ArrayList<>();
+
+    public static void loadSport() {
+        sports.add(new Sport("Tennis",
+                "Ven - 16h,18h",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                "Monsieur Bob Ho",
+                20,
+                15,
+                new LatLng(45.785503, 4.883437))
+                );
+        sports.add(new Sport("Basket",
+                "Ven - 16h,18h",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                "Monsieur Denis Chon",
+                20,
+                15,
+                new LatLng(45.785503, 4.883437))
+                );
+    }
 
     public Sport(String name, String timeSlot, String shortDescription, String teacher, int maxStudentSlot, int minStudentSlot, LatLng location) {
         this.name = name;
@@ -62,8 +87,14 @@ public class Sport {
         return location;
     }
 
-    public void subscribe() {
+    public void subscribe(int index) {
         takenStudentSlot++;
+        wishes.add(sports.get(index));
+    }
+
+    public void unsubscribe(int index) {
+        takenStudentSlot--;
+        wishes.remove(index);
     }
 
     public String slotToString() {
