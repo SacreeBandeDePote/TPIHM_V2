@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="ihm.lsbdp.insa.eps_insa.student.after.StudentAfterActivity">
 
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="261dp"
@@ -19,7 +20,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="152dp"
+        android:layout_height="35dp"
+        android:layout_marginBottom="57dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Note de séance :"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView5"
@@ -57,23 +76,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="152dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="57dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Note de séance :"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView"
@@ -89,24 +91,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uptext" />
+        app:layout_constraintTop_toBottomOf="@+id/titleSlot" />
 
     <TextView
-        android:id="@+id/uptext"
-        android:layout_width="385dp"
-        android:layout_height="56dp"
+        android:id="@+id/titleSlot"
+        android:layout_width="0dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@android:color/darker_gray"
-        android:backgroundTint="@android:color/darker_gray"
-        android:gravity="center"
-        android:text="Créneau"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Créneau :"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:translationX="@android:dimen/dialog_min_width_major"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+
 
     <TextView
         android:id="@+id/textView2"
