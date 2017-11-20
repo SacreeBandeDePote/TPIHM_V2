@@ -16,11 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".student.before.StudentBeforeActivity" android:label="StudentBeforeActivity">
+        <activity
+            android:name=".student.before.StudentBeforeActivity"
+            android:label="StudentBeforeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
@@ -40,6 +44,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".teacher.TeacherActivity" />
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDeGN5Lrv5WjqofAax7VlO-W3v01RjRtHc"/>
+
     </application>
 
 </manifest>
