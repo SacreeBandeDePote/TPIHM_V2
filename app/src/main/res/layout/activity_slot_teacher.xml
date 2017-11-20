@@ -174,13 +174,4 @@
         app:layout_constraintTop_toTopOf="@+id/textView3"
 
         />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_student"
-        android:layout_width="347dp"
-        android:layout_height="25dp"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="478dp" />
-
-
 </android.support.constraint.ConstraintLayout>
