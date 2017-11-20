@@ -30,17 +30,14 @@ public class LoginActivity extends AppCompatActivity {
         toTest = mEdit.getText().toString();
 
         if (toTest.equals("agaillot")) {
-            Snackbar.make(view, "Logged as agaillot", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            //Intent intent = new Intent(this, StudentBeforeActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, StudentBeforeActivity.class);
+            startActivity(intent);
         } else if (toTest.equals("bros")) {
-            Snackbar.make(view, "Logged as bros", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            //Intent intent = new Intent(this, StudentAfterActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, StudentAfterActivity.class);
+            startActivity(intent);
         } else if (toTest.equals("hbonisseur")) {
-            Snackbar.make(view, "Logged as hbonisseur", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            //Intent intent = new Intent(this, TeacherActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, TeacherActivity.class);
+            startActivity(intent);
         } else {
             Snackbar.make(view, "Log in error", Snackbar.LENGTH_LONG).setAction("Action", null).show();
         }
