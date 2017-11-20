@@ -7,6 +7,7 @@ import android.view.View;
 
 import ihm.lsbdp.insa.eps_insa.R;
 import ihm.lsbdp.insa.eps_insa.student.after.StudentAfterActivity;
+import ihm.lsbdp.insa.eps_insa.student.before.Sport;
 import ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeActivity;
 import ihm.lsbdp.insa.eps_insa.teacher.TeacherActivity;
 
@@ -16,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Sport.loadSport();
     }
 
     public void connectStudentBefore(View view) {
