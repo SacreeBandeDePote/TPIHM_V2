@@ -12,6 +12,8 @@ import ihm.lsbdp.insa.eps_insa.teacher.TeacherActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //GOOD ROS
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
