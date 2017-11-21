@@ -4,11 +4,10 @@
     android:layout_height="match_parent"
     tools:context="ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeList">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Voeux"
-        android:textSize="30sp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/wish_sport"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal" />
 
 </RelativeLayout>
