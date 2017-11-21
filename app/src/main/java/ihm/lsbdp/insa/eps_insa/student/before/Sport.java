@@ -31,7 +31,7 @@ public class Sport {
                 20,
                 15,
                 new LatLng(45.785503, 4.883437))
-                );
+        );
         sports.add(new Sport("Basket",
                 "Ven - 16h,18h",
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
@@ -39,7 +39,31 @@ public class Sport {
                 20,
                 15,
                 new LatLng(45.785503, 4.883437))
-                );
+        );
+        sports.add(new Sport("HandBall",
+                "Ven - 16h,18h",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                "Jeff",
+                24,
+                20,
+                new LatLng(45.785503, 4.883437))
+        );
+        sports.add(new Sport("Danse",
+                "Lun - 18h,20h",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                "Delphine Savel",
+                15,
+                10,
+                new LatLng(45.785503, 4.883437))
+        );
+        sports.add(new Sport("Escalade",
+                "Ven - 16h,18h",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a viverra metus, eu varius ex. Phasellus molestie leo non sapien semper dapibus.",
+                "GuiGui Beslon",
+                20,
+                14,
+                new LatLng(45.785503, 4.883437))
+        );
     }
 
     public Sport(String name, String timeSlot, String shortDescription, String teacher, int maxStudentSlot, int minStudentSlot, LatLng location) {

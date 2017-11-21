@@ -1,6 +1,8 @@
 package ihm.lsbdp.insa.eps_insa.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 
 import ihm.lsbdp.insa.eps_insa.R;
 import ihm.lsbdp.insa.eps_insa.student.after.StudentAfterActivity;
+import ihm.lsbdp.insa.eps_insa.student.before.Sport;
 import ihm.lsbdp.insa.eps_insa.student.before.StudentBeforeActivity;
 import ihm.lsbdp.insa.eps_insa.teacher.TeacherActivity;
 
@@ -22,8 +25,16 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         mEdit = (EditText) findViewById(R.id.login_input_ID);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (!prefs.getBoolean("firstTime", false)) {
+            Sport.loadSport();
+            // mark first time has runned.
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", true);
+            editor.commit();
+        }
     }
 
     public void connect(View view) {
