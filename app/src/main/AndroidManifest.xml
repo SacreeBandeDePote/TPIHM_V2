@@ -44,10 +44,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".teacher.TeacherActivity" />
         </activity>
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDeGN5Lrv5WjqofAax7VlO-W3v01RjRtHc"/>
-
+        <activity
+            android:name=".teacher.listEleveActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".teacher.SlotTeacherActivity" />
+        </activity>
     </application>
 
 </manifest>
