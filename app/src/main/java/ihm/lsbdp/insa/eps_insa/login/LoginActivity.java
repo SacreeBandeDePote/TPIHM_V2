@@ -26,27 +26,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mEdit = (EditText) findViewById(R.id.login_input_ID);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (!prefs.getBoolean("firstTime", false)) {
-            Sport.loadSport();
-            // mark first time has runned.
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putBoolean("firstTime", true);
-            editor.commit();
-        }
+        Sport.loadSport();
     }
 
     public void connect(View view) {
         toTest = mEdit.getText().toString();
 
-        if (toTest.equals("agaillot")) {
+        if (toTest.equals("sb")) {
             Intent intent = new Intent(this, StudentBeforeActivity.class);
             startActivity(intent);
-        } else if (toTest.equals("bros")) {
+        } else if (toTest.equals("sa")) {
             Intent intent = new Intent(this, StudentAfterActivity.class);
             startActivity(intent);
-        } else if (toTest.equals("hbonisseur")) {
+        } else if (toTest.equals("t")) {
             Intent intent = new Intent(this, TeacherActivity.class);
             startActivity(intent);
         } else {
