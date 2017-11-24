@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name=".student.before.StudentBeforeActivity"
-            android:label="StudentBeforeActivity">
+            android:label="EPS INSA">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -29,27 +29,35 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".teacher.TeacherActivity">
+        <activity
+            android:name=".teacher.TeacherActivity"
+            android:label="EPS INSA">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".student.after.StudentAfterActivity">
+        <activity android:name=".student.after.StudentAfterActivity"
+            android:label="EPS INSA">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.LoginActivity" />
         </activity>
-        <activity android:name=".teacher.SlotTeacherActivity">
+        <activity android:name=".teacher.SlotTeacherActivity"
+            android:label="EPS INSA">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".teacher.TeacherActivity" />
         </activity>
         <activity
-            android:name=".teacher.listEleveActivity">
+            android:name=".teacher.listEleveActivity"
+            android:label="EPS INSA">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".teacher.SlotTeacherActivity" />
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDeGN5Lrv5WjqofAax7VlO-W3v01RjRtHc"/>
     </application>
 
 </manifest>

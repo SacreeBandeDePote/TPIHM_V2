@@ -153,6 +153,9 @@ public class StudentBeforeList extends Fragment{
                 teacher.setText("Professeur : " + SportAdapter.this.sports.get(position).getTeacher());
                 studentSlot.setText(SportAdapter.this.sports.get(position).slotToString());
 
+                if(sports.get(position).getTakenStudentSlot() > 0) {
+                    addWish.setEnabled(false);
+                }
                 expandableLayout.collapse(false);
             }
 

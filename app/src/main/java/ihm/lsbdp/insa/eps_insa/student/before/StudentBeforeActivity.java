@@ -24,9 +24,6 @@ public class StudentBeforeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_before);
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 findViewById(R.id.navigation);
-
-        //Sport.loadSport();
-
         listFragment = StudentBeforeList.newInstance();
         wishFragment = StudentBeforeWish.newInstance();
 
