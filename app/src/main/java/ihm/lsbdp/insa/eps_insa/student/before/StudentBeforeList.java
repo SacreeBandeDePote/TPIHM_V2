@@ -156,7 +156,6 @@ public class StudentBeforeList extends Fragment{
                 if(sports.get(position).getTakenStudentSlot() > 0) {
                     addWish.setEnabled(false);
                 }
-
                 expandableLayout.collapse(false);
             }
 
